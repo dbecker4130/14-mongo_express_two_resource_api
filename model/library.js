@@ -7,13 +7,14 @@ const Schema = mongoose.Schema;
 
 const Artist = require('./artist.js');
 
+const Library = module.exports = mongoose.model('library, librarySchema');
+
 const librarySchema = Schema({
   name: {type: String, required: true},
   timestamp: {type: String, required: true},
   artists: [{type: Schema.Types.ObjectId, ref: 'artist'}]
 });
 
-const Library = module.exports = mongoose.model('library, librarySchema');
 
 Library.findByIdAndAddArtist = function(id, artist) {
   debug('findByIdAndAddArtist');
