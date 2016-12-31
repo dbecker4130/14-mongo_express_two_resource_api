@@ -3,7 +3,7 @@
 const expect = require('chai').expect;
 const request = require('superagent');
 const Library = require('../model/library.js');
-const Artist = require('../model/artist.js');
+// const Artist = require('../model/artist.js');
 
 const PORT = 3000;
 

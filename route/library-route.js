@@ -1,13 +1,13 @@
 'use strist';
 
 const Router = require('express').Router;
-const jsonParser = require('body-parser');
+const jsonParser = require('body-parser').json();
 const createError = require('http-errors');
 
 const Library = require('../model/library.js');
 const libraryRouter = module.exports = new Router();
 
-libraryRouter.post('api/library', jsonParser, function(req, res, next) {
+libraryRouter.post('/api/library', jsonParser, function(req, res, next) {
   req.body.timestamp = new Date();
   new Library(req.body).save()
   .then( library => res.json(library))
@@ -15,7 +15,7 @@ libraryRouter.post('api/library', jsonParser, function(req, res, next) {
 });
 
 libraryRouter.get('/api/library/:id', function(req, res, next) {
-  Library.findByID (req.params.id)
+  Library.findByID(req.params.id)
   .populate('artists')
   .then( library => res.json(library))
   .catch( err => next(createError(404, err.message)));

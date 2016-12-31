@@ -9,7 +9,7 @@ const debug = require('debug')('artist:server');
 
 const libraryRouter = require('./route/library-route.js');
 const artistRouter = require('./route/artist-route.js');
-const errors = require('.lib/error-middleware.js');
+const errors = require('./lib/error-middleware.js');
 
 const PORT = 3000;
 const MONGODB_URI = 'mongodb://localhost/artist';
