@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "DEBUG='artist*' ./node_modules/mocha/bin/mocha",
+    "test": "DEBUG='artist*' mocha",
     "start": "DEBUG='artist*' node server.js"
   },
   "repository": {

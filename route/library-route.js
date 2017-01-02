@@ -15,7 +15,7 @@ libraryRouter.post('/api/library', jsonParser, function(req, res, next) {
 });
 
 libraryRouter.get('/api/library/:id', function(req, res, next) {
-  Library.findByID(req.params.id)
+  Library.findById(req.params.id)
   .populate('artists')
   .then( library => res.json(library))
   .catch( err => next(createError(404, err.message)));

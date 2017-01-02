@@ -54,7 +54,7 @@ describe('Library Routes', function() {
         new Library(exampleLibrary).save()
         .then( library => {
           this.tempLibrary = library;
-          return Library.findByIdAndAddNote(library._id, exampleArtist);
+          return Library.findByIdAndAddArtist(library._id, exampleArtist);
         })
         .then( note => {
           this.tempNote = note;

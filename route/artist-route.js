@@ -16,7 +16,7 @@ artistRouter.post('/api/library/:libraryID/artist', jsonParser, function(req, re
 });
 
 artistRouter.get('/api/artist/:id', function(req, res, next) {
-  Artist.findByID(req.params.id)
+  Artist.findById(req.params.id)
   .then( artist => res.json(artist))
   .catch( err => next(createError(404, err.message)));
 });
