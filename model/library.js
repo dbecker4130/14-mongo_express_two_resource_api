@@ -17,16 +17,17 @@ const Library = module.exports = mongoose.model('library', librarySchema);
 
 Library.findByIdAndAddArtist = function(id, artist) {
   debug('findByIdAndAddArtist');
-
+  console.log(id);
   return Library.findById(id)
   .catch( err => Promise.reject(createError(404, err.message)))
   .then( library => {
+    console.log(library);
     artist.libraryID = library._id;
     this.tempLibrary = library;
     return new Artist(artist).save();
   })
   .then( artist => {
-    this.tempLibrary.notes.push(artist._id);
+    this.tempLibrary.artists.push(artist._id);
     this.tempArtist = artist;
     return this.tempLibrary.save();
   })
@@ -42,7 +43,7 @@ Library.findByIdAndRemoveArtist = function(id) {
   .catch( err => Promise.reject(createError(404, err.message)))
   .then( artist => {
     this.tempArtist = artist;
-    return Artist.findByIdAndRemoveArtist(artist._id);
+    return Artist.findByIdAndRemove(artist._id);
   })
   .then( () => Library.findById(this.tempArtist.libraryID))
   .then( library => {

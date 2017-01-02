@@ -43,7 +43,7 @@ describe('Artist Routes', function() {
       });
 
       it('should return an artist', done => {
-        request.post(`${url}/api/library/${this.tempLibrary.id}/artist`)
+        request.post(`${url}/api/library/${this.tempLibrary._id}/artist`)
         .send(exampleArtist)
         .end((err, res) => {
           if (err) return done(err);

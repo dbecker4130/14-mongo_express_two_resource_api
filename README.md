@@ -60,7 +60,7 @@ X-Powered-By: Express
     "name": "Blink-182"
 }
 ```
-To access the additional resource, you can run `http POST localhost:<PORT>/api/library name='<name>' genre='<genre>'`
+To access the additional resource, you can run `http POST localhost:<PORT>/api/library name='<name>'`
 * This will update the Library object to show `name:` `genre:` and `id:`
 * You will also receive a status code of 200.
 

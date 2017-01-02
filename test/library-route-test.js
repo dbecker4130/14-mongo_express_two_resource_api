@@ -17,8 +17,8 @@ const exampleLibrary = {
 };
 
 const exampleArtist = {
-  name: 'test note',
-  content: 'test content'
+  name: 'test artist',
+  genre: 'test genre'
 };
 
 describe('Library Routes', function() {
@@ -79,8 +79,8 @@ describe('Library Routes', function() {
           if (err) return done(err);
           expect(res.status).to.equal(200);
           expect(res.body.name).to.equal('test library');
-          expect(res.body.notes.length).to.equal(1);
-          expect(res.body.notes[0].name).to.equal(exampleArtist.name);
+          expect(res.body.artists.length).to.equal(1);
+          expect(res.body.artists[0].name).to.equal(exampleArtist.name);
           done();
         });
       });
