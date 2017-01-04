@@ -35,10 +35,10 @@ artistRouter.put('/api/artist/:id', jsonParser, function(req, res, next) {
   .catch(next);
 });
 
-artistRouter.delete('api/artist/:id', function(req, res, next) {
+artistRouter.delete('/api/artist/:id', function(req, res, next) {
   debug('DELETE: /api/artist');
 
-  Library.findByIdAndRemoveArtist(req.params.id)
+  Library.findByIdAndRemove(req.params.id)
   .then( () => res.status(204).send())
   .catch(next);
 });
