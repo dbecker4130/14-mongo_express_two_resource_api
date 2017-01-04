@@ -46,6 +46,16 @@ describe('Library Routes', function() {
         });
       });
     });
+    describe('with an invalid body', function() {
+      it('should throw a 400 bad request', done => {
+        request.post(`${url}/api/library`)
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    });
   });
 
   describe('GET: /api/library/:id', function() {
@@ -85,6 +95,16 @@ describe('Library Routes', function() {
         });
       });
     });
+    describe('with an invalid request', function() {
+      it('should throw a 404 not found', done => {
+        request.get(`${url}/api/library`)
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    });
   });
 
   describe('PUT: /api/library/:id', function() {
@@ -119,6 +139,55 @@ describe('Library Routes', function() {
           expect(res.status).to.equal(200);
           expect(res.body.name).to.equal(updated.name);
           expect(timestamp.toString()).to.equal(exampleLibrary.timestamp.toString());
+          done();
+        });
+      });
+    });
+    describe('with an invalid body', function() {
+      it('should throw a 404 not found', done => {
+        request.put(`${url}/api/library`)
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    });
+  });
+  describe('DELETE: /api/library/:id', function() {
+    describe('with a valid body', function() {
+      before( done => {
+        new Library(exampleLibrary).save()
+        .then( library => {
+          this.tempLibrary = library;
+          done();
+        })
+        .catch(done);
+      });
+      after( done => {
+        if(this.tempLibrary) {
+          Library.remove({})
+          .then(() => done())
+          .catch(done);
+          return;
+        }
+        done();
+      });
+      it('should delete library', done => {
+        request.delete(`${url}/api/library/${this.tempLibrary._id}`)
+        .end((err, res) => {
+          if(err) return done();
+          expect(res.status).to.equal(204);
+          done();
+        });
+      });
+    });
+    describe('with an invalid body', function() {
+      it('should throw a 404 not found', done => {
+        request.delete(`${url}/api/library`)
+        .end((err, res) => {
+          expect(err).to.be.an('error');
+          expect(res.status).to.equal(404);
           done();
         });
       });
